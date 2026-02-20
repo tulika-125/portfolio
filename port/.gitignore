@@ -1,0 +1,12 @@
+.env
+__pycache__/
+*.pyc
+venv/
+.vscode/
+.idea/
+static/videos/
+content.txt
+test_api.py
+.DS_Store
+node_modules/
+build/
