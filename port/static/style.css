@@ -179,6 +179,14 @@ body::before {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
+@media (max-width: 768px) {
+    .card {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
+}
+
+
 .card:hover {
     transform: translateY(-5px);
     border-color: var(--primary-ember);
@@ -385,6 +393,14 @@ h2 {
     color: var(--text-primary);
     display: inline-block;
 }
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
 
 .skills-tags-container {
     display: flex;
@@ -621,16 +637,80 @@ h2 {
     text-shadow: 0 0 5px var(--primary-ember);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .dashboard-grid {
-        grid-template-columns: 1fr;
+/* Responsive Overrides */
+@media (max-width: 1024px) {
+    .nav-container {
+        padding: 1rem;
     }
 
-    .profile-card {
-        position: static;
+    .hero-split {
+        gap: 2rem;
+        padding: 2rem 0;
     }
 }
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .nav-link {
+        font-size: 0.75rem;
+    }
+
+    .hero-split {
+        flex-direction: column-reverse;
+        text-align: center;
+        min-height: auto;
+        padding: 3rem 0;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .profile-name {
+        font-size: 2rem;
+    }
+
+    .dashboard-grid {
+        padding: 1rem;
+        gap: 2rem;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-glow-circle {
+        width: 160px;
+        height: 160px;
+    }
+
+    .profile-name {
+        font-size: 1.5rem;
+    }
+
+    .nav-logo {
+        font-size: 1rem;
+    }
+
+    .nav-links {
+        gap: 0.8rem;
+    }
+
+    .skills-tags-container {
+        justify-content: center;
+    }
+}
+
 
 /* Chat Widget Styling */
 #chat-widget {
