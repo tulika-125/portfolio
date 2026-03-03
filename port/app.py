@@ -99,10 +99,12 @@ def get_data():
 
 @app.route('/download_resume')
 def download_resume():
+    if not os.path.exists('tulika.pdf'):
+        return "Resume file not found. Please contact the administrator.", 404
     try:
         return send_file('tulika.pdf', as_attachment=True)
     except Exception as e:
-        return str(e)
+        return f"Error downloading resume: {str(e)}", 500
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -131,4 +133,5 @@ def chat():
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    # In production, debug should be False.
+    app.run(host='0.0.0.0', port=port, debug=False)
