@@ -60,17 +60,9 @@
         <!-- Skills Section -->
         <div class="card section-card">
             <h2>Technical Proficiency</h2>
-            <div class="skills-container">
+            <div class="skills-tags-container">
                 {% for skill in data.skills_detailed %}
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span class="skill-name">{{ skill.name }}</span>
-                        <span class="skill-percentage">{{ skill.level }}%</span>
-                    </div>
-                    <div class="skill-bar-bg">
-                        <div class="skill-bar-fill" style="--progress: {{ skill.level }}%;"></div>
-                    </div>
-                </div>
+                <span class="tech-tag skill-tag-large">{{ skill.name }}</span>
                 {% endfor %}
             </div>
         </div>

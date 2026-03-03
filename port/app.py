@@ -38,11 +38,11 @@ data = {
     ],
     "skills": ["C Programming", "C++", "Java", "Python", "Unity", "HTML", "CSS", "JavaScript"],
     "skills_detailed": [
-        {"name": "C/C++", "level": 80},
-        {"name": "Python", "level": 75},
-        {"name": "Java", "level": 60},
-        {"name": "Unity", "level": 40},
-        {"name": "Front-end Development", "level": 50}
+        {"name": "C/C++"},
+        {"name": "Python"},
+        {"name": "Java"},
+        {"name": "Unity"},
+        {"name": "Front-end Development"}
     ],
     "projects": [
         {

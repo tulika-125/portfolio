@@ -380,57 +380,18 @@ h2 {
     display: inline-block;
 }
 
-.skills-container {
+.skills-tags-container {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
     width: 100%;
 }
 
-.skill-item {
-    width: 100%;
-}
-
-.skill-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-}
-
-.skill-name {
-    font-weight: 700;
+.skill-tag-large {
     font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-primary);
-}
-
-.skill-percentage {
-    font-weight: 700;
-    color: var(--primary-ember);
-}
-
-.skill-bar-bg {
-    width: 100%;
-    height: 8px;
-    background: #1c1c1e;
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
-}
-
-.skill-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary-ember), #fff5f6);
-    box-shadow: 0 0 15px rgba(255, 183, 197, 0.5);
-    border-radius: 4px;
-    width: 0;
-    /* Initial state */
-    transition: width 1.5s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.section-card.reveal .skill-bar-fill {
-    width: var(--progress);
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    background: rgba(255, 183, 197, 0.08);
 }
 
 /* Social Icons */
