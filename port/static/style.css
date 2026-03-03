@@ -737,6 +737,17 @@ h2 {
     cursor: pointer;
 }
 
+/* Video Modal Additional Styles */
+.hidden-player {
+    display: none !important;
+}
+
+.video-container iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+}
+
 #chat-messages {
     flex: 1;
     padding: 1rem;
