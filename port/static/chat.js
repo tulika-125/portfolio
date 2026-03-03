@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Toggle Chat Window
     chatButton.addEventListener('click', () => {
         chatWindow.classList.toggle('hidden');
+        chatWidget.classList.toggle('active');
         if (!chatWindow.classList.contains('hidden')) {
             chatInput.focus();
         }
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     closeChat.addEventListener('click', () => {
         chatWindow.classList.add('hidden');
+        chatWidget.classList.remove('active');
     });
 
     // Send Message
