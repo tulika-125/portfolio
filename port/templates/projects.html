@@ -27,10 +27,12 @@
     <div class="modal-content card">
         <button id="close-modal">&times;</button>
         <div class="video-container">
-            <video id="project-video" controls>
+            <video id="project-video" controls class="hidden-player">
                 <source src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+            <iframe id="project-iframe" src="" frameborder="0" allow="autoplay; fullscreen"
+                class="hidden-player"></iframe>
         </div>
     </div>
 </div>
@@ -40,29 +42,47 @@
     document.addEventListener('DOMContentLoaded', () => {
         const modal = document.getElementById('video-modal');
         const video = document.getElementById('project-video');
+        const iframe = document.getElementById('project-iframe');
         const closeBtn = document.getElementById('close-modal');
         const projectItems = document.querySelectorAll('.clickable-project');
 
         projectItems.forEach(item => {
             item.addEventListener('click', () => {
                 const videoSrc = item.getAttribute('data-video');
-                video.src = videoSrc;
+
+                // Reset players
+                video.classList.add('hidden-player');
+                iframe.classList.add('hidden-player');
+                video.src = "";
+                iframe.src = "";
+
+                if (videoSrc.includes('drive.google.com')) {
+                    // Use Iframe for Google Drive
+                    iframe.src = videoSrc;
+                    iframe.classList.remove('hidden-player');
+                } else {
+                    // Use Video tag for local/direct links
+                    video.src = videoSrc;
+                    video.classList.remove('hidden-player');
+                    video.play();
+                }
+
                 modal.classList.remove('hidden');
-                video.play();
             });
         });
 
-        closeBtn.addEventListener('click', () => {
+        const closeModal = () => {
             modal.classList.add('hidden');
             video.pause();
             video.src = "";
-        });
+            iframe.src = "";
+        };
+
+        closeBtn.addEventListener('click', closeModal);
 
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
-                modal.classList.add('hidden');
-                video.pause();
-                video.src = "";
+                closeModal();
             }
         });
     });

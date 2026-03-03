@@ -49,13 +49,13 @@ data = {
             "title": "Pokemon Mini Game",
             "tech": "C++ | Console Based",
             "description": "Developed a console-based mini game inspired by Pokémon using OOP concepts. Implemented game logic, player actions, and battle mechanics with a menu-driven interface.",
-            "video_url": "https://drive.google.com/uc?export=download&id=1KmC_dLTombXT2lZuDdhmCnu08gAZC4EM"
+            "video_url": "https://drive.google.com/file/d/1KmC_dLTombXT2lZuDdhmCnu08gAZC4EM/preview"
         },
         {
             "title": "Career Compass",
             "tech": "HTML, CSS, Javascript",
             "description": "Developed an informative career guidance webpage to help students explore different career options. Designed structured sections for PCM, Commerce, Arts, and Medical career paths with responsive design.",
-            "video_url": "https://drive.google.com/uc?export=download&id=1Il1JhGQETTUSfLe7CzbCuKOUixs4Tyep"
+            "video_url": "https://drive.google.com/file/d/1Il1JhGQETTUSfLe7CzbCuKOUixs4Tyep/preview"
         }
     ],
     "certifications": [
