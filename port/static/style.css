@@ -389,13 +389,14 @@ h2 {
 .skills-tags-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.8rem;
     width: 100%;
 }
 
-.skill-tag-large {
-    font-size: 0.9rem;
-    padding: 0.6rem 1.2rem;
+.skill-tag-large,
+.skills-tags-container .tech-tag {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
     border-radius: 30px;
     background: rgba(255, 183, 197, 0.08);
 }
