@@ -3,7 +3,7 @@
 {% block content %}
 <div class="dashboard-grid">
     <!-- Hero Section -->
-    <section class="hero-split">
+    <section id="home" class="hero-split section-anchor">
         <div class="hero-image-area">
             <div class="profile-glow-circle">
                 {% if data.profile_image %}
@@ -58,14 +58,132 @@
     <div class="main-content">
 
         <!-- Skills Section -->
-        <div class="card section-card">
-            <h2>Technical Proficiency</h2>
-            <div class="skills-tags-container">
-                {% for skill in data.skills_detailed %}
-                <span class="tech-tag skill-tag-large">{{ skill.name }}</span>
+        <section id="skills" class="section-anchor">
+            <div class="card section-card">
+                <h2>Technical Proficiency</h2>
+                <div class="skills-tags-container">
+                    {% for skill in data.skills_detailed %}
+                    <span class="tech-tag skill-tag-large">{{ skill.name }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section-anchor">
+            <div class="card section-card">
+                <h2>Technical Projects</h2>
+                <div class="projects-grid">
+                    {% for project in data.projects %}
+                    <div class="project-item clickable-project" data-video="{{ project.video_url }}">
+                        <h3>{{ project.title }}</h3>
+                        <div class="tech-stack">
+                            {% for tag in project.tech.split('|') %}
+                            <span class="tech-tag">{{ tag.strip() }}</span>
+                            {% endfor %}
+                        </div>
+                        <p>{{ project.description }}</p>
+                        <span class="view-demo">Click to view demo</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section-anchor">
+            <div class="card section-card">
+                <h2>Education</h2>
+                {% for edu in data.education %}
+                <div class="timeline-item">
+                    <h3>{{ edu.degree }}</h3>
+                    <p class="institution">{{ edu.institution }}</p>
+                    <p class="year">{{ edu.year }}</p>
+                </div>
                 {% endfor %}
             </div>
+
+            <div class="card section-card">
+                <h2>Certifications</h2>
+                <div class="certifications-grid">
+                    {% for cert in data.certifications %}
+                    <a href="{{ cert.url }}" target="_blank" class="cert-link">
+                        <div class="cert-item clickable-cert">
+                            <h3>{{ cert.title }}</h3>
+                            <p>{{ cert.description }}</p>
+                            <span class="view-cert">Click to view profile</span>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Video Modal -->
+<div id="video-modal" class="modal hidden">
+    <div class="modal-content card">
+        <button id="close-modal">&times;</button>
+        <div class="video-container">
+            <video id="project-video" controls class="hidden-player">
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <iframe id="project-iframe" src="" frameborder="0" allow="autoplay; fullscreen"
+                class="hidden-player"></iframe>
         </div>
     </div>
 </div>
+
+<script>
+    // Project Video Modal Logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('video-modal');
+        const video = document.getElementById('project-video');
+        const iframe = document.getElementById('project-iframe');
+        const closeBtn = document.getElementById('close-modal');
+        const projectItems = document.querySelectorAll('.clickable-project');
+
+        projectItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const videoSrc = item.getAttribute('data-video');
+
+                // Reset players
+                video.classList.add('hidden-player');
+                iframe.classList.add('hidden-player');
+                video.src = "";
+                iframe.src = "";
+
+                if (videoSrc.includes('drive.google.com')) {
+                    // Use Iframe for Google Drive
+                    iframe.src = videoSrc;
+                    iframe.classList.remove('hidden-player');
+                } else {
+                    // Use Video tag for local/direct links
+                    video.src = videoSrc;
+                    video.classList.remove('hidden-player');
+                    video.play();
+                }
+
+                modal.classList.remove('hidden');
+            });
+        });
+
+        const closeModal = () => {
+            modal.classList.add('hidden');
+            video.pause();
+            video.src = "";
+            iframe.src = "";
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    });
+</script>
 {% endblock %}

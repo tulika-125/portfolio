@@ -15,14 +15,12 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="{{ url_for('home') }}" class="nav-logo">TULIKA<span>.</span></a>
+            <a href="#home" class="nav-logo">TULIKA<span>.</span></a>
             <div class="nav-links">
-                <a href="{{ url_for('home') }}"
-                    class="nav-link {% if request.endpoint == 'home' %}active{% endif %}">Home</a>
-                <a href="{{ url_for('projects') }}"
-                    class="nav-link {% if request.endpoint == 'projects' %}active{% endif %}">Projects</a>
-                <a href="{{ url_for('experience') }}"
-                    class="nav-link {% if request.endpoint == 'experience' %}active{% endif %}">Experience</a>
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
             </div>
         </div>
     </nav>

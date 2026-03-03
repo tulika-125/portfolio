@@ -92,14 +92,6 @@ Guidelines:
 def home():
     return render_template('home.html', data=data)
 
-@app.route('/projects')
-def projects():
-    return render_template('projects.html', data=data)
-
-@app.route('/experience')
-def experience():
-    return render_template('experience.html', data=data)
-
 @app.route('/api/data')
 def get_data():
     return jsonify(data)
