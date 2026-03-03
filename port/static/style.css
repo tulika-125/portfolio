@@ -897,9 +897,15 @@ h2 {
     margin-bottom: 0.25rem;
 }
 
-.detail-value {
-    color: var(--text-primary);
-    font-weight: 500;
+.detail-value a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.detail-value a:hover {
+    color: var(--primary-ember);
+    text-shadow: 0 0 5px var(--primary-ember);
 }
 
 .contact-form {
