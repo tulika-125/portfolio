@@ -21,11 +21,13 @@ client = Groq(
 data = {
     "name": "Tulika Mahato",
     "role": "Aspiring Developer | B.Tech CSE",
+    "profile_image": "resumepic.jpeg",
     "about": "Curious and driven student with strong analytical thinking, communication skills, and adaptability. Passionate about gaining hands-on experience and improving abilities through practical learning and teamwork.",
     "contact": {
         "phone": "8926158212",
         "email": "tulikamahato1114@gmail.com",
-        "location": "Jamshedpur, Jharkhand"
+        "location": "Jamshedpur, Jharkhand",
+        "linkedin": "https://www.linkedin.com/in/tulika-mahato-253302329"
     },
     "education": [
         {
@@ -35,36 +37,44 @@ data = {
         }
     ],
     "skills": ["C Programming", "C++", "Java", "Python", "Unity", "HTML", "CSS", "JavaScript"],
+    "skills_detailed": [
+        {"name": "C/C++", "level": 80},
+        {"name": "Python", "level": 75},
+        {"name": "Java", "level": 60},
+        {"name": "Unity", "level": 40},
+        {"name": "Front-end Development", "level": 50}
+    ],
     "projects": [
         {
             "title": "Pokemon Mini Game",
             "tech": "C++ | Console Based",
             "description": "Developed a console-based mini game inspired by Pokémon using OOP concepts. Implemented game logic, player actions, and battle mechanics with a menu-driven interface.",
-            "video_url": "static/videos/pokemon.mp4"
+            "video_url": "https://drive.google.com/uc?export=download&id=1KmC_dLTombXT2lZuDdhmCnu08gAZC4EM"
         },
         {
             "title": "Career Compass",
             "tech": "HTML, CSS, Javascript",
             "description": "Developed an informative career guidance webpage to help students explore different career options. Designed structured sections for PCM, Commerce, Arts, and Medical career paths with responsive design.",
-            "video_url": "static/videos/career.mp4"
+            "video_url": "https://drive.google.com/uc?export=download&id=1Il1JhGQETTUSfLe7CzbCuKOUixs4Tyep"
         }
     ],
     "certifications": [
         {
             "title": "Google Cloud Arcade Program",
-            "description": "Successfully completed 13 learning milestones in the Google Cloud Arcade program. Completed hands-on cloud learning challenges and guided technical modules."
+            "description": "Successfully completed 13 learning milestones in the Google Cloud Arcade program. Completed hands-on cloud learning challenges and guided technical modules.",
+            "url": "https://www.skills.google/profile/badges"
         }
     ]
 }
 
 # System Prompt for Chatbot
 SYSTEM_PROMPT = f"""
-You are "Luna", Tulika Mahato's AI assistant. While the portfolio has a "Stranger Things" theme, you should remain professional and helpful.
+You are "Luna", Tulika Mahato's professional AI assistant. The portfolio has a modern, technical, and high-end aesthetic. You should be helpful, clear, and efficient.
 
 Your personality:
-- Professional, clear, and efficient.
-- You can make subtle, friendly 80s/Stranger Things references, but don't overdo the "eerie" or "mysterious" vibe.
-- Focus on accurately representing Tulika's skills and projects.
+- Expert-level knowledge of Tulika's background.
+- Professional, polite, and direct.
+- Focus on providing value to recruiters and potential employers.
 
 Tulika's Info:
 - Name: {data['name']}
@@ -74,15 +84,21 @@ Tulika's Info:
 - Contact: {data['contact']['email']}
 
 Guidelines:
-1. Be direct and helpful. 
-2. Keep the "80s radio" tone light and secondary to the information.
-3. If you don't know something, suggest contacting Tulika.
-4. Keep responses concise.
+1. Provide specific examples of Tulika's work when asked.
+2. Keep responses concise and professional.
 """
 
 @app.route('/')
-def dashboard():
-    return render_template('dashboard.html', data=data)
+def home():
+    return render_template('home.html', data=data)
+
+@app.route('/projects')
+def projects():
+    return render_template('projects.html', data=data)
+
+@app.route('/experience')
+def experience():
+    return render_template('experience.html', data=data)
 
 @app.route('/api/data')
 def get_data():
@@ -123,4 +139,4 @@ def chat():
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port, debug=False)
+    app.run(host='0.0.0.0', port=port, debug=True)

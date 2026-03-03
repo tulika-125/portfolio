@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-content full-width">
+    <!-- Projects Section -->
+    <div class="card section-card">
+        <h2>Technical Projects</h2>
+        <div class="projects-grid">
+            {% for project in data.projects %}
+            <div class="project-item clickable-project" data-video="{{ project.video_url }}">
+                <h3>{{ project.title }}</h3>
+                <div class="tech-stack">
+                    {% for tag in project.tech.split('|') %}
+                    <span class="tech-tag">{{ tag.strip() }}</span>
+                    {% endfor %}
+                </div>
+                <p>{{ project.description }}</p>
+                <span class="view-demo">Click to view demo</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Video Modal -->
+<div id="video-modal" class="modal hidden">
+    <div class="modal-content card">
+        <button id="close-modal">&times;</button>
+        <div class="video-container">
+            <video id="project-video" controls>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Project Video Modal Logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('video-modal');
+        const video = document.getElementById('project-video');
+        const closeBtn = document.getElementById('close-modal');
+        const projectItems = document.querySelectorAll('.clickable-project');
+
+        projectItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const videoSrc = item.getAttribute('data-video');
+                video.src = videoSrc;
+                modal.classList.remove('hidden');
+                video.play();
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            video.pause();
+            video.src = "";
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+                video.pause();
+                video.src = "";
+            }
+        });
+    });
+</script>
+{% endblock %}

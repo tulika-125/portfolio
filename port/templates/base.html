@@ -9,9 +9,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
 </head>
 
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('home') }}" class="nav-logo">TULIKA<span>.</span></a>
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}"
+                    class="nav-link {% if request.endpoint == 'home' %}active{% endif %}">Home</a>
+                <a href="{{ url_for('projects') }}"
+                    class="nav-link {% if request.endpoint == 'projects' %}active{% endif %}">Projects</a>
+                <a href="{{ url_for('experience') }}"
+                    class="nav-link {% if request.endpoint == 'experience' %}active{% endif %}">Experience</a>
+            </div>
+        </div>
+    </nav>
+
     <div id="mouse-glow"></div>
     <div class="container">
         {% block content %}{% endblock %}
@@ -20,9 +35,34 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const glow = document.getElementById('mouse-glow');
+            // Mouse Glow & Parallel Background
+            const bgBloom = document.querySelector('body::before'); // Reference for parallax hook
             document.addEventListener('mousemove', (e) => {
                 glow.style.left = e.clientX + 'px';
                 glow.style.top = e.clientY + 'px';
+
+                // Subtle Parallax
+                const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+                const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+                document.body.style.setProperty('--bg-move-x', moveX + 'px');
+                document.body.style.setProperty('--bg-move-y', moveY + 'px');
+            });
+
+            // Scroll Reveal Logic
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.section-card').forEach(card => {
+                observer.observe(card);
             });
         });
     </script>
