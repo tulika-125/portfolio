@@ -663,7 +663,7 @@ h2 {
     }
 
     .hero-split {
-        flex-direction: column-reverse;
+        flex-direction: column;
         text-align: center;
         min-height: auto;
         padding: 3rem 0;
