@@ -404,8 +404,8 @@ h2 {
 /* Social Icons */
 .social-links {
     display: flex;
-    gap: 1.5rem;
-    margin-top: 2rem;
+    gap: 1.2rem;
+    align-items: center;
 }
 
 .social-icon {
