@@ -133,8 +133,57 @@
             <iframe id="project-iframe" src="" frameborder="0" allow="autoplay; fullscreen"
                 class="hidden-player"></iframe>
         </div>
+        <!-- Contact Section -->
+        <section id="contact" class="section-anchor">
+            <div class="card section-card">
+                <h2>Contact Me</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of
+                            your visions.</p>
+                        <div class="contact-details">
+                            <div class="contact-detail-item">
+                                <span class="detail-label">Email</span>
+                                <span class="detail-value">{{ data.contact.email }}</span>
+                            </div>
+                            <div class="contact-detail-item">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">{{ data.contact.location }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </div>
 </div>
+
+<script>
+    // Contact Form Logic
+    document.getElementById('contact-form')?.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        const emailBody = `Name: ${name}%0A%0A${message}`;
+        window.location.href = `mailto:{{ data.contact.email }}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    });
+</script>
 
 <script>
     // Project Video Modal Logic
